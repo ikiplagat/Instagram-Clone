@@ -1,5 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
+    {% if user.is_authenticated %}
     <div class="logo">
       <a class="no-underline" href="#"> logo here </a>
     </div>
@@ -25,7 +26,7 @@
         />
       </form>
       <div class="me-2 navigation-icons">
-        <a href="" class="navigation-link">
+        <a href="{%url 'index'%}" class="navigation-link">
           <i class="fa fa-home"></i>
         </a>
         <a href="" class="navigation-link">
@@ -43,10 +44,15 @@
         <a href="" class="navigation-link">
           <i class="far fa-user-circle"></i>
         </a>
-        <!-- <a href="" id="signout" class="navigation-link">
+        <a href="/logout" id="signout" class="navigation-link">
           <i class="fas fa-sign-out-alt"></i>
-        </a> -->
+        </a>
       </div>
     </div>
+    {% else %}
+            <li>
+              <a class='btn btn-default' href="/accounts/login">Login</a>
+            </li>
+    {% endif %}
   </div>
 </nav>
