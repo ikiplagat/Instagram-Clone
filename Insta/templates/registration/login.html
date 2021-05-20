@@ -3,19 +3,19 @@
   <div class="row">
     <!-- Empty div -->
     <div class="col-md-4"></div>
-    <div class="col-md-4 card">
+    <div class="card col-md-4 mt-5 mb-3 pb-3">
       {% if form.errors %}
       <p>Password or Username is incorrect</p>
       {% endif %}
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="text-center">Sign In</h3>
+          <h3 class="text-center pt-4 pb-2">Sign In</h3>
         </div>
         <div class="panel-body">
           <form action="/accounts/login/" method="post">
             {% csrf_token %} {% bootstrap_form form%}
 
-            <div class="form-group">
+            <div class="form-group text-center d-grid gap-2">
               <input
                 type="submit"
                 class="btn btn-primary btn-sm"
@@ -27,16 +27,17 @@
           </form>
         </div>
       </div>
-      <div class="pt-3">
-        <small class="text-muted">
-          Don't have an account?
-          <a class="ml-2" href="/accounts/register">Sign up</a>
-        </small>
-      </div>
     </div>
-    
     <!-- empty div -->
     <div class="col-md-4"></div>
+    <!-- empty div -->
+    <div class="col-md-4"></div>
+    <div class="card col-md-4 pt-3 pb-3 mb-5 text-center">
+      <small class="text-muted">
+       Don't have an account?
+        <a class="ml-2" href="/accounts/register">Sign up</a>
+      </small>
+    </div>
   </div>
 </div>
 
