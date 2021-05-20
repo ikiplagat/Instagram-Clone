@@ -2,7 +2,7 @@
   <div class="container col-md-9">
     {% if user.is_authenticated %}
     <div class="logo">
-      <a class="" href="#"><img src="/static/photos/ig.png" alt=""></a>
+      <a class="" href="#"><img src="/static/photos/ig.png" alt="" /></a>
     </div>
     <button
       class="navbar-toggler"
@@ -35,18 +35,35 @@
         <a class="navigation-link">
           <i class="far fa-heart"></i>
         </a>
-        <a href="" class="navigation-link">
-          <i class="far fa-user-circle"></i>
-        </a>
-        <a href="/logout" id="signout">
-          <i class="fas fa-sign-out-alt"></i>
-        </a>
+        <div class="dropdown main">
+          <a
+            class="navigation-link"
+            id="dropdownMenu"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="far fa-user-circle"></i>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+            <div class="bd">
+              <li class="magna">
+                <a class="carta" href="/profile"><i class="far fa-user-circle"></i><span> Profile</span></a>
+              </li>
+              <li class="magna">
+                <a class="carta" href="/accounts/password/change"><i class="fa fa-cog" aria-hidden="true"></i><span> Change Password</span></a>
+              </li>
+            </div>
+            <li class="magna">
+              <a class="logout carta" href="/logout">Logout</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
     {% else %}
-            <li>
-              <a class='btn btn-default' href="/accounts/login">Login</a>
-            </li>
+    <li>
+      <a class="btn btn-default" href="/accounts/login">Login</a>
+    </li>
     {% endif %}
   </div>
 </nav>
