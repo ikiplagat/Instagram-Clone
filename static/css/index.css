@@ -1,0 +1,91 @@
+@import url('http://fonts.cdnfonts.com/css/billabong');
+body {
+  background: #fafafa;
+}
+
+/* start header */
+
+.navigation {
+  background-color: #ffffff;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+  z-index: 2;
+  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+}
+
+.shrink {
+  height: 50px;
+}
+
+.navigation .logo a {
+  position: relative;
+  color: #000000;
+  font-size: 30px;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+}
+
+.search {
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
+}
+
+.search input {
+  background-color: #fafafa;
+  padding: 3px 20px;
+  padding-left: 25px;
+  height: 30px;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.0975);
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.search .fa-search {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+
+@media only screen and (min-width: 280px) and (max-width: 1366px) {
+  .navigation-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+  .search {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .search input::placeholder {
+    text-align: center;
+  }
+}
+
+
+
+.search input::placeholder {
+  text-align: center;
+}
+
+
+
+
+
