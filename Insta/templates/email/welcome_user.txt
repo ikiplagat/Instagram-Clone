@@ -1,0 +1,4 @@
+Welcome to Instagram, {{name}}
+
+Find people to follow and start sharing
+photos. 
