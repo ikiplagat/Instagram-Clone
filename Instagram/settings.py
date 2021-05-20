@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import cloudinary
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -35,6 +36,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'Insta.apps.InstaConfig',
     'bootstrap5',
+    'cloudinary',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +44,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+cloudinary.config(
+    cloud_name="kasparov",
+    api_key="623993469388411",
+    api_secret="VCf65PVv1BM09CJbTXCjj2pprRc",
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
