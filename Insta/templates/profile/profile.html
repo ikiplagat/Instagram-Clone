@@ -14,9 +14,44 @@
 
         <button class="btn profile-edit btn-sm">Edit Profile</button>
 
-        <button class="btn profile-settings-btn" aria-label="profile settings">
+        <button
+          class="btn profile-settings-btn"
+          aria-label="profile settings"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
           <i class="fas fa-cog" aria-hidden="true"></i>
         </button>
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-body">
+                  <div class="bd">
+                    <h3 class="text-center pt-3 pb-1"><img src="/static/photos/ig.png" alt=""></h3>
+                    <div class="magna bbtm">
+                      <a class="carta pb-3" href="/profile">Profile</a>
+                    </div>
+                    <div class="magna bbtm">
+                      <a class="carta" href="/accounts/password/change">Change Password</a>
+                    </div>
+                    <div class="magna">
+                      <a class="carta" href="/logout">Logout</a>
+                    </div>
+                  </div>
+              </div>
+              <div class="magna margm">
+                <a class="logout carta" href="">Cancel</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="profile-stats">
@@ -28,7 +63,11 @@
       </div>
 
       <div class="profile-bio col-md-4">
-        <p><span class="name">Ian Kiplagat</span> <br><span class="bio-text">Bio</span></p>
+        <p>
+          <span class="name">Ian Kiplagat</span> <br /><span class="bio-text"
+            >Bio</span
+          >
+        </p>
       </div>
     </div>
     <!-- End of profile section -->
