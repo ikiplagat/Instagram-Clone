@@ -3,28 +3,39 @@
 {% load static %}
 {% block content %}
   <div>
-    <h1>Instagram</h1>
     <main>
-      <div class="container">
-        <div class="gallery">
-          {% for image in images %}
-          <div class="gallery-item" tabindex="0">
-            <img src="{{image.image.url}}" class="gallery-image" alt="" />
-    
-            <div class="gallery-item-info">
-              <ul>
-                <li class="gallery-item-likes">
-                  <span class="visually-hidden">Likes:</span
-                  ><i class="fas fa-heart" aria-hidden="true"></i> 56
-                </li>
-                <li class="gallery-item-comments">
-                  <span class="visually-hidden">Comments:</span
-                  ><i class="fas fa-comment" aria-hidden="true"></i> 2
-                </li>
-              </ul>
+      <div class="container col-md-12 mt-5">
+        <div class="row">
+          <!-- Empty div -->
+          <div class="col-md-1"></div>
+          <div class="gallery col-md-6">
+            {% for image in images %}
+            <div class="card mb-5" tabindex="0">
+              <img src="{{image.image.url}}" class="gallery-image" alt="" />
+              
+              <div class="post-details">
+                <div class="row interactions">
+                  <div class="col-md-1">
+                    <a class="interaction-item">
+                    <i class="fas fa-heart" aria-hidden="true"></i><br>
+                    </a>
+                  </div>
+                  <div class="col-md-1">
+                    <a class="interaction-item">
+                    <i class="fas fa-comment" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                </div>
+                <p class="likes">360 likes</p>
+                <strong><p style="margin-left: 10px; font-size: 10px;">{{image.post_date|timesince|upper}} AGO</p></strong>
+              </div>
             </div>
+            {% endfor %}
           </div>
-          {% endfor %}
+          <div class="col-md-3">
+            <h1>Instagram</h1>
+          </div>
+          <div class="col-md-1"></div>
         </div>
       </div>
     </main>

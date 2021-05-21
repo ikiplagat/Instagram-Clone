@@ -1,27 +1,28 @@
-<!-- {%extends 'base.html'%} -->
-{% load static %}
-<!-- {% block content %} -->
-<div class="container">
-  <h1>insta</h1>
-
-  <div class="row">
-    {% if articles%}
-      <h2>{{ profile|length }} users</h2>
-    {% else %}
-      <h2>User not found</h2>
-    {% endif %}
-
-  </div>
-
-  <div class="row">
-
-  {% if profile %}
-    {% for profile in profiles %}
-      <div class="col-sm-6 col-md-3">
-          <h1>{{profile.user.username}}</h1>
+{%extends 'base.html'%} {% load static %} {% block content %}
+<main>
+  <div class="container">
+    <div class="row col-md-9">
+      <div class="gallery">
+        {% for image in images %}
+        <div class="gallery-item col-md-3" tabindex="0">
+          <img src="{{image.image.url}}" class="gallery-image" alt=""/>
+  
+          <div class="gallery-item-info">
+            <ul>
+              <li class="gallery-item-likes">
+                <span class="visually-hidden">Likes:</span
+                ><i class="fas fa-heart" aria-hidden="true"></i> 56
+              </li>
+              <li class="gallery-item-comments">
+                <span class="visually-hidden">Comments:</span
+                ><i class="fas fa-comment" aria-hidden="true"></i> 2
+              </li>
+            </ul>
+          </div>
+        </div>
+        {% endfor %}
       </div>
-    {% endfor %}
-  {% endif %}
+    </div>
   </div>
-</div>
-<!-- {% endblock %} -->
+</main>
+{% endblock %}

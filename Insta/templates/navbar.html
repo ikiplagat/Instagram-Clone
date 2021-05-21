@@ -2,7 +2,9 @@
   <div class="container col-md-9">
     {% if user.is_authenticated %}
     <div class="logo">
-      <a class="" href="{%url 'index'%}"><img src="/static/photos/ig.png" alt="" /></a>
+      <a class="" href="{%url 'index'%}"
+        ><img src="/static/photos/ig.png" alt=""
+      /></a>
     </div>
     <button
       class="navbar-toggler"
@@ -16,7 +18,11 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <form class="search d-flex" role="search" action="{% url 'search_results' %}">
+      <form
+        class="search d-flex"
+        role="search"
+        action="{% url 'search_results' %}"
+      >
         <!-- <i class="fa fa-search"></i> -->
         <input
           class="text-center form-control me-2"
@@ -29,7 +35,10 @@
         <a href="{%url 'index'%}" class="navigation-link">
           <i class="fa fa-home"></i>
         </a>
-        <a href="" class="navigation-link">
+        <a href="{%url 'new_post'%}" class="navigation-link"
+          ><i class="fa fa-plus" aria-hidden="true"></i>
+        </a>
+        <a href="{%url 'explore'%}" class="navigation-link">
           <i class="far fa-compass"></i>
         </a>
         <a class="navigation-link">

@@ -44,13 +44,14 @@ class Profile(models.Model):
     
 
 # Image class.
+from tinymce.models import HTMLField
 class Image(models.Model):
     image = CloudinaryField('photo')
     name = models.CharField(max_length =30)
-    caption = models.TextField(max_length =2200)
-    likes = models.IntegerField()
+    caption = HTMLField()
+    likes = models.IntegerField(null=True)
     comments = models.CharField(max_length =2200)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(User, related_name="posted_by", on_delete=models.CASCADE, null=True)
     post_date = models.DateTimeField(auto_now=True)
     
