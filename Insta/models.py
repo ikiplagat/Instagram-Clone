@@ -71,3 +71,17 @@ class Image(models.Model):
     def get_all(cls):
         images = cls.objects.all()
         return images            
+
+
+class Comment(models.Model):
+    content = models.TextField(max_length=150)
+    user = models.ForeignKey(User, related_name='commented_by', on_delete=models.CASCADE)
+    image = models.ForeignKey(Image, related_name='comment_for', on_delete=models.CASCADE)
+
+    def __str__(self):  
+        return self.content
+
+    @classmethod
+    def get_comments(cls):
+        comments = cls.objects.all()
+        return comments
