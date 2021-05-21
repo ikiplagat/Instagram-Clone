@@ -1,5 +1,41 @@
 {%extends 'base.html'%}
-
+{% load bootstrap5 %} 
+{% load static %}
 {% block content %}
-<h1 class="text-center">Instagram</h1>
-{% endblock %}
+  <div>
+    <h1>Instagram</h1>
+    <main>
+      <div class="container">
+        <div class="gallery">
+          {% for image in images %}
+          <div class="gallery-item" tabindex="0">
+            <img src="{{image.image.url}}" class="gallery-image" alt="" />
+    
+            <div class="gallery-item-info">
+              <ul>
+                <li class="gallery-item-likes">
+                  <span class="visually-hidden">Likes:</span
+                  ><i class="fas fa-heart" aria-hidden="true"></i> 56
+                </li>
+                <li class="gallery-item-comments">
+                  <span class="visually-hidden">Comments:</span
+                  ><i class="fas fa-comment" aria-hidden="true"></i> 2
+                </li>
+              </ul>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </main>
+    
+    <!-- <a
+      id="back-to-top"
+      href="#"
+      class="btn btn-light btn-lg back-to-top"
+      role="button"
+      ><i class="fa fa-chevron-up"></i
+    ></a> -->
+  </div>
+{%endblock%}
+

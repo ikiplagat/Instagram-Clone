@@ -37,6 +37,11 @@ class Profile(models.Model):
         profiles = cls.objects.all()
         return profiles
     
+    @classmethod
+    def search_by_username(cls,search_term):
+        profile = cls.objects.filter(user=search_term)
+        return profile
+    
 
 # Image class.
 class Image(models.Model):

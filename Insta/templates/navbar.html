@@ -2,7 +2,7 @@
   <div class="container col-md-9">
     {% if user.is_authenticated %}
     <div class="logo">
-      <a class="" href="#"><img src="/static/photos/ig.png" alt="" /></a>
+      <a class="" href="{%url 'index'%}"><img src="/static/photos/ig.png" alt="" /></a>
     </div>
     <button
       class="navbar-toggler"
@@ -16,7 +16,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <div class="search d-flex">
+      <form class="search d-flex" role="search" action="{% url 'search_results' %}">
         <!-- <i class="fa fa-search"></i> -->
         <input
           class="text-center form-control me-2"
@@ -24,7 +24,7 @@
           placeholder="Search"
           aria-label="Search"
         />
-      </div>
+      </form>
       <div class="me-2 navigation-icons">
         <a href="{%url 'index'%}" class="navigation-link">
           <i class="fa fa-home"></i>
@@ -47,10 +47,15 @@
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
             <div class="bd">
               <li class="magna">
-                <a class="carta" href="/profile"><i class="far fa-user-circle"></i><span> Profile</span></a>
+                <a class="carta" href="/profile"
+                  ><i class="far fa-user-circle"></i><span> Profile</span></a
+                >
               </li>
               <li class="magna">
-                <a class="carta" href="/accounts/password/change"><i class="fa fa-cog" aria-hidden="true"></i><span> Change Password</span></a>
+                <a class="carta" href="/accounts/password/change"
+                  ><i class="fa fa-cog" aria-hidden="true"></i
+                  ><span> Change Password</span></a
+                >
               </li>
             </div>
             <li class="magna">

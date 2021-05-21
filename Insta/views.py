@@ -14,6 +14,13 @@ def index(request):
     
     return render(request, 'post/index.html', { "images": images})
 
+# Feed
+@login_required(login_url='/accounts/login/')
+def explore(request):
+    images = Image.objects.all()
+    
+    return render(request, 'post/explore.html', { "images": images})
+
 # Profile page
 @login_required(login_url='/accounts/login/')
 def profile(request):
@@ -28,3 +35,16 @@ def profile(request):
 def profile_update(request):
     
     return render(request, 'profile/profile_edit')
+
+def search_results(request):
+
+    if 'profile' in request.GET and request.GET["profile"]:
+        search_term = request.GET.get("profile")
+        searched_profiles = Profile.search_by_username(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'post/explore.html',{"message":message,"profiles": searched_profiles})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'post/explore.html',{"message":message})

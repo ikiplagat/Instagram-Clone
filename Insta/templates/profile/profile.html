@@ -4,10 +4,15 @@
     <!-- Displaying user profile   -->
     <div class="profile">
       <div class="profile-image">
+        {% if profile.photo %}
+        <img class="img-circle" src="{{ profile.photo }}" />
+        {% else %}
         <img
           src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces"
           alt=""
         />
+        {% endif %}
+        <label>{{profile.user.username}}</label>
       </div>
 
       <div class="profile-user-settings">
