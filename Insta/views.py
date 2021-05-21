@@ -22,3 +22,9 @@ def profile(request):
     images = Image.objects.filter(user = request.user)
     
     return render(request, 'profile/profile.html', {"date": date, "images": images, })
+
+# Update profile
+@login_required(login_url='/accounts/login/')
+def profile_update(request):
+    
+    return render(request, 'profile/profile_edit')

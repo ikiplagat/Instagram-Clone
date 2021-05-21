@@ -1,9 +1,7 @@
-{%extends 'base.html'%}
-{% load static %}
-{% block content %}
+{%extends 'base.html'%} {% load static %} {% block content %}
 <header>
   <div class="container">
-      <!-- Displaying user profile   -->
+    <!-- Displaying user profile   -->
     <div class="profile">
       <div class="profile-image">
         <img
@@ -15,7 +13,9 @@
       <div class="profile-user-settings">
         <h1 class="username">{{ request.user.username }}</h1>
 
-        <button class="btn profile-edit btn-sm">Edit Profile</button>
+        <button class="btn profile-edit btn-sm">
+          <a class="carta" href="/profile_edit">Edit Profile</a>
+        </button>
 
         <button
           class="btn profile-settings-btn"
@@ -36,18 +36,22 @@
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-body">
-                  <div class="bd">
-                    <h3 class="text-center pt-3 pb-1"><img src="/static/photos/ig.png" alt=""></h3>
-                    <div class="magna bbtm">
-                      <a class="carta pb-3" href="/profile">Profile</a>
-                    </div>
-                    <div class="magna bbtm">
-                      <a class="carta" href="/accounts/password/change">Change Password</a>
-                    </div>
-                    <div class="magna">
-                      <a class="carta" href="/logout">Logout</a>
-                    </div>
+                <div class="bd">
+                  <h3 class="text-center pt-3 pb-1">
+                    <img src="/static/photos/ig.png" alt="" />
+                  </h3>
+                  <div class="magna bbtm">
+                    <a class="carta pb-3" href="/profile">Profile</a>
                   </div>
+                  <div class="magna bbtm">
+                    <a class="carta" href="/accounts/password/change"
+                      >Change Password</a
+                    >
+                  </div>
+                  <div class="magna">
+                    <a class="carta" href="/logout">Logout</a>
+                  </div>
+                </div>
               </div>
               <div class="magna margm">
                 <a class="logout carta" href="">Cancel</a>
@@ -59,7 +63,9 @@
 
       <div class="profile-stats">
         <ul>
-          <li><span class="profile-stat-count">{{images|length}}</span> posts</li>
+          <li>
+            <span class="profile-stat-count">{{images|length}}</span> posts
+          </li>
           <li><span class="profile-stat-count">188</span> followers</li>
           <li><span class="profile-stat-count">206</span> following</li>
         </ul>
@@ -67,7 +73,8 @@
 
       <div class="profile-bio col-md-4">
         <p>
-          <span class="name">{{ request.user.profile.name }}</span> <br /><span class="bio-text"
+          <span class="name">{{ request.user.profile.name }}</span> <br /><span
+            class="bio-text"
             >{{ request.user.profile.bio }}</span
           >
         </p>
@@ -83,11 +90,7 @@
     <div class="gallery">
       {% for image in images %}
       <div class="gallery-item" tabindex="0">
-        <img
-          src="{{image.image.url}}"
-          class="gallery-image"
-          alt=""
-        />
+        <img src="{{image.image.url}}" class="gallery-image" alt="" />
 
         <div class="gallery-item-info">
           <ul>
@@ -102,9 +105,7 @@
           </ul>
         </div>
       </div>
-      {% endfor %}
-
-      {% endblock %}
+      {% endfor %} {% endblock %}
     </div>
   </div>
 </main>
