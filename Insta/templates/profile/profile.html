@@ -1,6 +1,9 @@
-{%extends 'base.html'%} {% block content %}
+{%extends 'base.html'%}
+{% load static %}
+{% block content %}
 <header>
   <div class="container">
+      <!-- Displaying user profile   -->
     <div class="profile">
       <div class="profile-image">
         <img
@@ -10,7 +13,7 @@
       </div>
 
       <div class="profile-user-settings">
-        <h1 class="username">kasparov_</h1>
+        <h1 class="username">{{ request.user.username }}</h1>
 
         <button class="btn profile-edit btn-sm">Edit Profile</button>
 
@@ -56,7 +59,7 @@
 
       <div class="profile-stats">
         <ul>
-          <li><span class="profile-stat-count">164</span> posts</li>
+          <li><span class="profile-stat-count">{{images|length}}</span> posts</li>
           <li><span class="profile-stat-count">188</span> followers</li>
           <li><span class="profile-stat-count">206</span> following</li>
         </ul>
@@ -64,8 +67,8 @@
 
       <div class="profile-bio col-md-4">
         <p>
-          <span class="name">Ian Kiplagat</span> <br /><span class="bio-text"
-            >Bio</span
+          <span class="name">{{ request.user.profile.name }}</span> <br /><span class="bio-text"
+            >{{ request.user.profile.bio }}</span
           >
         </p>
       </div>
@@ -78,9 +81,10 @@
 <main>
   <div class="container">
     <div class="gallery">
+      {% for image in images %}
       <div class="gallery-item" tabindex="0">
         <img
-          src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?w=500&h=500&fit=crop"
+          src="{{image.image.url}}"
           class="gallery-image"
           alt=""
         />
@@ -98,6 +102,7 @@
           </ul>
         </div>
       </div>
+      {% endfor %}
 
       {% endblock %}
     </div>
