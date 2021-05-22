@@ -4,11 +4,11 @@
 {% block content %}
   <div>
     <main>
-      <div class="container col-md-12 mt-5">
-        <div class="row">
+      <div class="container mt-5">
+        <div class="row" style="position: relative;">
           <!-- Empty div -->
-          <div class="col-md-1"></div>
-          <div class="gallery col-md-6">
+          <div class="empty col-md-1"></div>
+          <div class="timeline gallery col-md-6">
             {% for image in images %}
             <div class='profile_user'>
               <a href="" target='_blank' class='user'>{{image.user}}</a>
@@ -30,21 +30,26 @@
                   </div>
                 </div>
                 <p class="likes">360 likes</p>
-                <strong><p style="margin-left: 10px; font-size: 10px;">{{image.post_date|timesince|upper}} AGO</p></strong>
                 <div class='caption'>
                   <a href="">{{image.user}}</a><span>{{image.caption}}</span>
+                </div>
+                <div class='comment'>
+                  <a href="">{{image.user}}</a><span>{{image.comment}}</span>
                 </div>
                 <div class='comment-section'>
                   <input type='text' id='commentss' placeholder='Add a comment...'>
                 </div>
+                <strong>
+                  <p style="margin-left: 10px; font-size: 10px;">{{image.post_date|timesince|upper}} AGO</p>
+                </strong>
               </div>
             </div>
             {% endfor %}
           </div>
           <div class="sidebar col-md-3">
-            <h1>Instagram</h1>
+            <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse consectetur doloremque adipisci ducimus rem nesciunt ut sapiente praesentium similique, porro quidem suscipit velit quisquam cupiditate molestias vero nobis explicabo laboriosam laborum unde error ipsum non ipsa. Fuga voluptates, sunt neque eligendi ex deleniti nesciunt voluptatem laboriosam, ut unde aperiam maiores! Mollitia itaque, reiciendis debitis recusandae quae dignissimos consequatur, unde voluptatibus iusto soluta impedit quibusdam iure saepe modi, obcaecati fugit! Error reprehenderit debitis possimus rerum delectus qui asperiores dolorum, reiciendis quis soluta tempore deleniti, officiis est sapiente eaque. Itaque velit, id provident cupiditate aut vitae impedit cumque deserunt facilis laboriosam tempore?</h5>
           </div>
-          <div class="col-md-1"></div>
+          <div class="empty col-md-1"></div>
         </div>
       </div>
     </main>

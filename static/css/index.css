@@ -1,11 +1,11 @@
-@import url('http://fonts.cdnfonts.com/css/billabong');
+@import url("http://fonts.cdnfonts.com/css/billabong");
 body {
   background: #fafafa;
 }
 
 .navigation {
   background-color: #ffffff;
-  position: fixed;
+  position: sticky;
   width: 100%;
   top: 0;
   left: 0;
@@ -36,7 +36,7 @@ body {
 }
 
 .magna:hover {
-  background-color: rgb(242,245,241);
+  background-color: rgb(242, 245, 241);
 }
 
 .margm {
@@ -61,7 +61,7 @@ body {
 }
 
 .logout {
-  padding-left: 5px; 
+  padding-left: 5px;
 }
 
 .search {
@@ -71,7 +71,7 @@ body {
 }
 
 .search input {
-  background-color: rgb(242,245,241);
+  background-color: rgb(242, 245, 241);
   padding: 3px 20px;
   padding-left: 25px;
   height: 30px;
@@ -89,23 +89,9 @@ body {
   color: rgba(0, 0, 0, 0.5);
 }
 
-@media only screen and (min-width: 280px) and (max-width: 812px) {
-  .navigation-icons {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 5px;
-  }
-  .search {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-  }
-}
-
 .navigation-icons {
   display: flex;
-} 
+}
 
 .search input:focus {
   outline: none;
@@ -157,7 +143,7 @@ body {
   -ms-flex-item-align: center;
   align-self: center;
   font-size: 13px;
-  font-weight: 600
+  font-weight: 600;
 }
 
 .caption {
@@ -166,7 +152,7 @@ body {
   margin: 16px 26px;
 }
 .caption a {
-  margin-right: .3em;
+  margin-right: 0.3em;
   font-weight: 600;
 }
 
@@ -191,6 +177,11 @@ body {
 
 .profile-image img {
   border-radius: 50%;
+}
+
+.profile_img {
+  width: 150px;
+  height: 150px;
 }
 
 .profile-stats,
@@ -265,7 +256,6 @@ body {
 
 .gallery {
   display: flex;
-  flex: 33.33%;
   flex-wrap: wrap;
   float: left;
   margin: -1rem -1rem;
@@ -278,8 +268,7 @@ body {
 
 .gallery-item {
   position: relative;
-  flex: 1 0 22rem;
-  margin: 1rem;
+  padding: 1rem;
   color: #fff;
   cursor: pointer;
 }
@@ -290,9 +279,11 @@ body {
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  top: 1rem;
+  left: 1rem;
+  bottom: 1rem;
+  width: calc(100% - 2rem);
+  height: calc(100% - 2rem);
   background-color: rgba(0, 0, 0, 0.3);
 }
 
@@ -306,7 +297,8 @@ body {
 
 .sidebar {
   overflow: hidden;
-  /* position: fixed; */
+  position: fixed;
+  right: 150px;
 }
 
 #commentss {
@@ -359,7 +351,73 @@ body {
   text-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
 }
 
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media only screen and (min-width: 280px) and (max-width: 812px) {
+  .navigation-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .search {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .timeline {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1366px) {
+  .navigation-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+  .search {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .timeline {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  .sidebar {
+    right: 60px;
+  }
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .sidebar {
+    display: none;
+  }
+
+  .empty {
+    display: none;
+  }
+
+  .timeline {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
   .profile-bio {
     margin-top: 30px;
     display: flex;
@@ -370,85 +428,100 @@ body {
     align-self: center;
     align-items: center;
   }
-}  
+}
 
 @media screen and (max-width: 731px) {
+  .sidebar {
+    display: none;
+  }
+
+  .empty {
+    display: none;
+  }
+
+  .timeline {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
   .profile {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 4rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 4rem 0;
   }
 
   .profile::after {
-      display: none;
+    display: none;
   }
 
   .profile-image,
   .profile-user-settings,
   .profile-bio,
   .profile-stats {
-      float: none;
-      width: auto;
+    float: none;
+    width: auto;
   }
 
   .profile-image img {
-      width: 7.7rem;
+    width: 7.7rem;
   }
 
   .profile-user-settings {
-      flex-basis: calc(100% - 10.7rem);
-      display: flex;
-      flex-wrap: wrap;
-      margin-top: 1rem;
+    flex-basis: calc(100% - 10.7rem);
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1rem;
   }
 
   .username {
-      font-size: 2.2rem;
+    font-size: 2.2rem;
   }
 
   .profile-edit {
-      order: 1;
-      padding: 0;
-      text-align: center;
-      margin-top: 1rem;
+    order: 1;
+    padding: 0;
+    text-align: center;
+    margin-top: 1rem;
   }
 
   .profile-edit {
-      margin-left: 0;
+    margin-left: 0;
   }
 
   .profile-bio {
-      font-size: 1.4rem;
-      margin-top: 1.5rem;
+    font-size: 1.4rem;
+    margin-top: 1.5rem;
   }
 
   .profile-edit,
   .profile-bio,
   .profile-stats {
-      flex-basis: 100%;
+    flex-basis: 100%;
   }
 
   .profile-stats {
-      order: 1;
-      margin-top: 1.5rem;
+    order: 1;
+    margin-top: 1.5rem;
   }
 
   .profile-stats ul {
-      display: flex;
-      text-align: center;
-      padding: 1.2rem 0;
-      border-top: 0.1rem solid #dadada;
-      border-bottom: 0.1rem solid #dadada;
+    display: flex;
+    text-align: center;
+    padding: 1.2rem 0;
+    border-top: 0.1rem solid #dadada;
+    border-bottom: 0.1rem solid #dadada;
   }
 
   .profile-stats li {
-      font-size: 1.4rem;
-      flex: 1;
-      margin: 0;
+    font-size: 1.4rem;
+    flex: 1;
+    margin: 0;
   }
 
   .profile-stat-count {
-      display: block;
+    display: block;
   }
 }
 
@@ -462,5 +535,3 @@ body {
   margin-left: 10px;
   padding-right: 10px;
 }
-
-

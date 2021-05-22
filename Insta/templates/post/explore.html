@@ -1,10 +1,10 @@
 {%extends 'base.html'%} {% load static %} {% block content %}
 <main>
   <div class="container">
-    <div class="row col-md-9">
-      <div class="gallery">
+    <div class="row pt-5">
+      <div class="timeline gallery">
         {% for image in images %}
-        <div class="gallery-item col-md-3" tabindex="0">
+        <div class="gallery-item col-md-4" tabindex="0">
           <img src="{{image.image.url}}" class="gallery-image" alt=""/>
   
           <div class="gallery-item-info">

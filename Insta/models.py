@@ -25,8 +25,8 @@ class Profile(models.Model):
         self.delete()
         
     @classmethod
-    def update_profile(cls,id,bio):
-        cls.objects.filter(id=id).update(bio=bio)              
+    def update_profile(cls,id,photo,name,bio):
+        cls.objects.filter(id=id).update(photo=photo,name=name,bio=bio)              
 
     @classmethod
     def get_profile_by_id(cls,id):
@@ -47,9 +47,9 @@ class Profile(models.Model):
 # Image class.
 class Image(models.Model):
     image = CloudinaryField('photo')
-    name = models.CharField(max_length =30, blank=True , default='')
+    name = models.CharField(max_length =30, blank=True)
     caption = TextField()
-    likes = models.IntegerField(null=True)
+    likes = models.IntegerField(blank=True, default=0)
     comments = models.CharField(max_length =2200, blank=True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(User, related_name="posted_by", on_delete=models.CASCADE, null=True)

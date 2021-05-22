@@ -30,8 +30,8 @@ class ProfileTestClass(TestCase):
         
     def test_update_profile(self):
         self.profile.save_profile()
-        self.profile.update_profile(self.profile.id,'I am Levlest')
-        update=Profile.objects.get(bio='I am Levlest')
+        self.profile.update_profile(self.profile.id,'img', 'name', 'I am Levlest')
+        update=Profile.objects.get(photo='img',name='name',bio='I am Levlest')
         self.assertEqual(update.bio,'I am Levlest')                      
         
         

@@ -12,7 +12,7 @@ from .forms import NewPostForm, UpdateProfileForm
 @login_required(login_url='/accounts/login/')
 def index(request):
     images = Image.objects.all()
-    comments = Comment.get_comments()
+    comments = Comment.objects.all()
     
     return render(request, 'post/index.html', { "images": images, "comments": comments})
 
