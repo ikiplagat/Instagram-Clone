@@ -32,12 +32,6 @@ def profile(request):
     
     return render(request, 'profile/profile.html', {"date": date, "images": images, })
 
-# Update profile
-@login_required(login_url='/accounts/login/')
-def profile_update(request):
-    
-    return render(request, 'profile/profile_edit')
-
 @login_required(login_url='/accounts/login/')
 def search_results(request):
 
@@ -46,11 +40,11 @@ def search_results(request):
         searched_profiles = Profile.search_by_username(search_term)
         message = f"{search_term}"
 
-        return render(request, 'post/explore.html',{"message":message,"profiles": searched_profiles})
+        return render(request, 'post/search.html',{"message":message,"profiles": searched_profiles})
 
     else:
         message = "You haven't searched for any term"
-        return render(request, 'post/explore.html',{"message":message})
+        return render(request, 'post/search.html',{"message":message})
     
 @login_required(login_url='/accounts/login/')
 def single_post(request,image_id):
@@ -75,6 +69,7 @@ def new_post(request):
         form = NewPostForm()
     return render(request, 'post/new_post.html', {"form": form})
 
+# Update profile
 @login_required(login_url='/accounts/login/')
 def update_profile(request):
     current_user = request.user
@@ -89,3 +84,6 @@ def update_profile(request):
     else:
         form = UpdateProfileForm()
     return render(request, 'profile/profile_edit.html', {"form": form})
+
+# @login_required(login_url='/accounts/login/')
+# def add_comment(request);

@@ -5,8 +5,8 @@
   <h1>insta</h1>
 
   <div class="row">
-    {% if articles%}
-      <h2>{{ profile|length }} users</h2>
+    {% if profiles %}
+      <h2>{{ profiles|length }} users</h2>
     {% else %}
       <h2>User not found</h2>
     {% endif %}
@@ -15,10 +15,10 @@
 
   <div class="row">
 
-  {% if profile %}
+  {% if profiles %}
     {% for profile in profiles %}
       <div class="col-sm-6 col-md-3">
-          <h1>{{profile.user.username}}</h1>
+          <h1>{{profile.name}}</h1>
       </div>
     {% endfor %}
   {% endif %}

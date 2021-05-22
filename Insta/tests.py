@@ -1,5 +1,6 @@
+from django.contrib.auth.models import User
 from django.test import TestCase
-from .models import Profile, Image
+from .models import Profile, Image, Comment
 
 # Create your tests here.
 
@@ -7,7 +8,9 @@ from .models import Profile, Image
 class ProfileTestClass(TestCase):
     # Set up method
     def setUp(self):
-        self.profile = Profile(photo = 'img', bio = 'I am Levlest')
+        self.user = User()
+        self.user.save()
+        self.profile = Profile(user = self.user, photo = 'img', name = 'img', bio = 'I am Levlest', followers = 0, following = 0)
       
     # Testing instance
     def test_instance(self):
@@ -36,11 +39,13 @@ class ProfileTestClass(TestCase):
 class ImageTestClass(TestCase):
   # Set up method
     def setUp(self):
-        self.profile= Profile(photo = 'img', bio = 'I am Levlest')
+        self.user = User()
+        self.user.save()
+        self.profile= Profile(user = self.user, photo = 'img', name = 'img', bio = 'I am Levlest', followers = 0, following = 0)
         self.profile.save()
-        self.image = Image(image = 'img', name = 'Kasparov', caption = 'I am Levlest', likes = 0, comments = 'Wowz', profile = self.profile)
+        self.image = Image(image = 'img', name = 'Kasparov', caption = 'I am Levlest', likes = 0, comments = 'Wowz', profile = self.profile, user = self.user, post_date = '')
       
-  # Testing instance
+    # Testing instance
     def test_instance(self):
         self.assertTrue(isinstance(self.image,Image))        
 
@@ -61,3 +66,25 @@ class ImageTestClass(TestCase):
         self.image.delete_image()
         del_images=Image.objects.all()
         self.assertEqual(len(del_images),0)      
+        
+        
+class CommentTestClass(TestCase):
+    # Set up method
+    def setUp(self):
+        self.user = User()
+        self.user.save()
+        self.profile= Profile(user = self.user, photo = 'img', name = 'img', bio = 'I am Levlest', followers = 0, following = 0)
+        self.profile.save()
+        self.image = Image(image = 'img', name = 'Kasparov', caption = 'I am Levlest', likes = 0, comments = 'Wowz', profile = self.profile, user = self.user, post_date = '')
+        self.image.save()
+        self.comment = Comment(content = 'This is lovely', user = self.user, image = self.image)
+        
+    # Testing instance
+    def test_instance(self):
+        self.assertTrue(isinstance(self.comment,Comment))        
+        
+    # Testing Save Method
+    def test_save_method(self):  
+        self.comment.save_comment()
+        comments = Comment.objects.all()
+        self.assertTrue(len(comments) > 0)    

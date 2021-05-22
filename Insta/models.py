@@ -2,6 +2,7 @@ from django.db import models
 from cloudinary.models import CloudinaryField
 import datetime as dt
 from django.contrib.auth.models import User
+from django.db.models.fields import TextField
 
 # Create your models here.
 
@@ -39,18 +40,17 @@ class Profile(models.Model):
     
     @classmethod
     def search_by_username(cls,search_term):
-        profile = cls.objects.filter(user=search_term)
+        profile = cls.objects.filter(user__icontains=search_term)
         return profile
     
 
 # Image class.
-from tinymce.models import HTMLField
 class Image(models.Model):
     image = CloudinaryField('photo')
-    name = models.CharField(max_length =30)
-    caption = HTMLField()
+    name = models.CharField(max_length =30, blank=True , default='')
+    caption = TextField()
     likes = models.IntegerField(null=True)
-    comments = models.CharField(max_length =2200)
+    comments = models.CharField(max_length =2200, blank=True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(User, related_name="posted_by", on_delete=models.CASCADE, null=True)
     post_date = models.DateTimeField(auto_now=True)
@@ -80,6 +80,9 @@ class Comment(models.Model):
 
     def __str__(self):  
         return self.content
+    
+    def save_comment(self):
+        self.save()
 
     @classmethod
     def get_comments(cls):

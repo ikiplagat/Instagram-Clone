@@ -136,7 +136,7 @@ body {
 
 /* Profile Section */
 
-.top-insta {
+.profile_user {
   position: relative;
   padding: 16px;
   height: 60px;
@@ -145,14 +145,14 @@ body {
   display: -ms-flexbox;
   display: flex;
 }
-.top-insta img {
+.profile_user img {
   width: 30px;
   height: 30px;
   border-radius: 50%;
   -ms-flex-item-align: center;
   align-self: center;
 }
-.top-insta .user {
+.profile_user .user {
   margin-left: 10px;
   -ms-flex-item-align: center;
   align-self: center;
@@ -161,9 +161,9 @@ body {
 }
 
 .caption {
-  color: #585858;
+  color: black;
   font-size: 13px;
-  margin: 16px 0;
+  margin: 16px 26px;
 }
 .caption a {
   margin-right: .3em;
@@ -252,6 +252,13 @@ body {
 }
 
 /* Gallery Section */
+.a_post {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
 .row {
   display: flex;
 }
@@ -260,6 +267,7 @@ body {
   display: flex;
   flex: 33.33%;
   flex-wrap: wrap;
+  float: left;
   margin: -1rem -1rem;
   padding-bottom: 3rem;
 }
