@@ -136,6 +136,40 @@ body {
 
 /* Profile Section */
 
+.top-insta {
+  position: relative;
+  padding: 16px;
+  height: 60px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.top-insta img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+.top-insta .user {
+  margin-left: 10px;
+  -ms-flex-item-align: center;
+  align-self: center;
+  font-size: 13px;
+  font-weight: 600
+}
+
+.caption {
+  color: #585858;
+  font-size: 13px;
+  margin: 16px 0;
+}
+.caption a {
+  margin-right: .3em;
+  font-weight: 600;
+}
+
 .profile {
   padding: 5rem 0;
 }
@@ -260,6 +294,11 @@ body {
   padding: 25px 25px 25px 25px;
   margin-top: 4px;
   overflow: hidden;
+}
+
+.sidebar {
+  overflow: hidden;
+  /* position: fixed; */
 }
 
 #commentss {
