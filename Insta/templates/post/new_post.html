@@ -10,20 +10,29 @@
   {{form.media}}
 
 {% block styles %} {% bootstrap_css %}
-  <link rel="stylesheet" href="{% static 'css/news.css' %}"> {% endblock %}
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+  crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="{% static 'css/index.css' %}"> {% endblock %}
 
 </head>
 
-<body>
+<body style="background-color: rgb(250,250,250);">
+  {% include 'navbar.html' %}
 
-  <div class="container col-md-4 pt-5 pb-5">
-    <form class="card pt-3 pb-3 new_post" action="{%url 'new_post'%}" method="post" enctype="multipart/form-data">
+  <div class="container col-md-4 pt-5 pb-5" style="color: white;">
+    <form class="pt-3 pb-3 new_post" action="{%url 'new_post'%}" method="post" enctype="multipart/form-data">
       {%csrf_token%}
   
       {% bootstrap_form form%}
-      <input type="submit" class="btn btn-primary btn-sm" value="Post">
+      <input type="submit" class="btn btn-sm" value="Post" style="background-color: rgb(178,223,252);">
     </form>
   </div>
+
+  {% include 'footer.html' %}
 
    {% block scripts %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

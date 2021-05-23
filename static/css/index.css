@@ -231,6 +231,10 @@ body {
   border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
 }
 
+.btp {
+  border-top: 1px solid rgba(0, 0, 0, 0.0975);
+}
+
 .name,
 .profile-stat-count,
 .profile-edit {
@@ -243,13 +247,6 @@ body {
 }
 
 /* Gallery Section */
-.a_post {
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-
 .row {
   display: flex;
 }
@@ -264,6 +261,7 @@ body {
 
 .gallery-image {
   width: 100%;
+  cursor: pointer;
 }
 
 .gallery-item {
@@ -298,7 +296,7 @@ body {
 .sidebar {
   overflow: hidden;
   position: fixed;
-  right: 150px;
+  right: 130px;
 }
 
 #commentss {
@@ -351,7 +349,7 @@ body {
   text-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
 }
 
-@media only screen and (min-width: 280px) and (max-width: 812px) {
+@media only screen and (min-width: 280px) and (max-width: 653px) {
   .navigation-icons {
     display: flex;
     justify-content: center;
@@ -376,7 +374,8 @@ body {
   }
 }
 
-@media only screen and (min-width: 1024px) and (max-width: 1366px) {
+
+@media only screen and (min-width: 1025px) and (max-width: 1366px) {
   .navigation-icons {
     display: flex;
     justify-content: center;
@@ -396,10 +395,9 @@ body {
     width: 100%;
   }
 
-  .sidebar {
-    right: 60px;
+  .margs {
+    margin-left: 100px;
   }
-
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
@@ -413,7 +411,7 @@ body {
 
   .timeline {
     display: flex;
-    margin-left: auto;
+    margin-left: 30px;
     margin-right: auto;
     width: 100%;
   }
@@ -534,4 +532,16 @@ body {
   height: 60%;
   margin-left: 10px;
   padding-right: 10px;
+}
+
+#footer li{
+  padding: 10px;
+  font-size: 10px;
+  display: inline;
+}
+
+.installed {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }

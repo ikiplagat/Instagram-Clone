@@ -1,24 +1,22 @@
 {%extends 'base.html'%}
 {% load static %}
 {% block content %}
-<div class="container">
-  <h1>insta</h1>
-
-  <div class="row">
-    {% if profiles %}
-      <h2>{{ profiles|length }} users</h2>
+<div class="container-fluid" style="background-color: black; height: 750vh;">
+  <div class="row pt-5">
+    {% if users %}
+      <h2 class="text-center" style="color: white;">{{ users|length }} users found</h2>
     {% else %}
-      <h2>User not found</h2>
+      <h2 class="text-center" style="color: white;">No Results Found for "{{message}}"</h2>
     {% endif %}
 
   </div>
 
   <div class="row">
 
-  {% if profiles %}
-    {% for profile in profiles %}
+  {% if users %}
+    {% for user in users %}
       <div class="col-sm-6 col-md-3">
-          <h1>{{profile.name}}</h1>
+          <h1>{{user.username}}</h1>
       </div>
     {% endfor %}
   {% endif %}

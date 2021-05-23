@@ -4,8 +4,10 @@
 {% block content %}
   <div class="container">
     <main>
-      <div class="a_post">
-        <div class="gallery col-md-6">
+      <div class="row pt-5">
+        <!-- Empty div -->
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
           <div class="gallery-item" tabindex="0">
 
             <div class="gallery-item-info">
@@ -20,9 +22,14 @@
                 </li>
               </ul>
             </div>
+            <!-- <div class="header">
+              {{ single_post.image.name}}
+            </div> -->
             <img src="{{single_post.image.url}}" class="gallery-image" alt="" />
           </div>
         </div>
+        <!-- Empty div -->
+        <div class="col-md-3"></div>
     </main>
   </div>
 {% endblock %}

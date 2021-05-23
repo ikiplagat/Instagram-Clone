@@ -33,14 +33,14 @@ def profile(request):
     return render(request, 'profile/profile.html', {"date": date, "images": images, })
 
 @login_required(login_url='/accounts/login/')
-def search_results(request):
+def search(request):
 
-    if 'profile' in request.GET and request.GET["profile"]:
-        search_term = request.GET.get("profile")
-        searched_profiles = Profile.search_by_username(search_term)
-        message = f"{search_term}"
+    if 'user' in request.GET and request.GET["user"]:
+        username = request.GET.get("user")
+        searched_profiles = Profile.search_profile(username)
+        message = f"{username}"
 
-        return render(request, 'post/search.html',{"message":message,"profiles": searched_profiles})
+        return render(request, 'post/search.html',{"message":message, "users": searched_profiles})
 
     else:
         message = "You haven't searched for any term"

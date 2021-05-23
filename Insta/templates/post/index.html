@@ -8,13 +8,13 @@
         <div class="row" style="position: relative;">
           <!-- Empty div -->
           <div class="empty col-md-1"></div>
-          <div class="timeline gallery col-md-6">
+          <div class="margs timeline gallery col-md-7">
             {% for image in images %}
             <div class='profile_user'>
               <a href="" target='_blank' class='user'>{{image.user}}</a>
             </div>
             <div class="card mb-5" tabindex="0">
-              <img src="{{image.image.url}}" class="gallery-image" alt="" />
+              <a href="/post/{{image.id}}"><img src="{{image.image.url}}" class="gallery-image" alt="" /></a>
               
               <div class="post-details">
                 <div class="row interactions">
@@ -34,7 +34,13 @@
                   <a href="">{{image.user}}</a><span>{{image.caption}}</span>
                 </div>
                 <div class='comment'>
-                  <a href="">{{image.user}}</a><span>{{image.comment}}</span>
+                  {%for comment in comments%}
+                    {%if comment.post == post.id%}
+                      <p>
+                        <strong>{{comment.user.username}}</strong> {{comment.comment}}
+                      </p>
+                    {%endif%}
+                  {%endfor%}
                 </div>
                 <div class='comment-section'>
                   <input type='text' id='commentss' placeholder='Add a comment...'>
@@ -47,7 +53,19 @@
             {% endfor %}
           </div>
           <div class="sidebar col-md-3">
-            <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse consectetur doloremque adipisci ducimus rem nesciunt ut sapiente praesentium similique, porro quidem suscipit velit quisquam cupiditate molestias vero nobis explicabo laboriosam laborum unde error ipsum non ipsa. Fuga voluptates, sunt neque eligendi ex deleniti nesciunt voluptatem laboriosam, ut unde aperiam maiores! Mollitia itaque, reiciendis debitis recusandae quae dignissimos consequatur, unde voluptatibus iusto soluta impedit quibusdam iure saepe modi, obcaecati fugit! Error reprehenderit debitis possimus rerum delectus qui asperiores dolorum, reiciendis quis soluta tempore deleniti, officiis est sapiente eaque. Itaque velit, id provident cupiditate aut vitae impedit cumque deserunt facilis laboriosam tempore?</h5>
+            {% if current_user %}
+            {% if profile.photo %}
+            <h1>hello</h1>
+            <img class="img-circle profile_img" src="{{ profile.photo }}"/>
+            {% else %}
+            <img class="profile_img"
+              src="/static/photos/default.jpg"
+              alt=""
+            />
+            {% endif %}
+            <label>{{profile.user.username}}</label>
+            {% endif %}
+            <h5 class="ma text-muted">Suggestions For You</h5>
           </div>
           <div class="empty col-md-1"></div>
         </div>
