@@ -121,6 +121,19 @@ body {
 }
 
 /* Profile Section */
+.prof {
+  color: black;
+  text-decoration: none;
+  margin-left: 10px;
+  font: bolder;
+  font-weight: 800px;
+  font-size: 0.8em;
+}
+
+.prof:hover {
+  color: black;
+  text-decoration: none;
+}
 
 .profile_user {
   position: relative;
@@ -149,11 +162,11 @@ body {
 .caption {
   color: black;
   font-size: 13px;
-  margin: 16px 26px;
+  margin: 5px 26px;
 }
-.caption a {
+.caption {
   margin-right: 0.3em;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .profile {
@@ -262,6 +275,11 @@ body {
 .gallery-image {
   width: 100%;
   cursor: pointer;
+  object-fit: contain;
+}
+
+.size {
+  width: 650px;
 }
 
 .gallery-item {
@@ -281,14 +299,13 @@ body {
   left: 1rem;
   bottom: 1rem;
   width: calc(100% - 2rem);
-  height: calc(100% - 2rem);
+  height: calc(100% - 4rem);
   background-color: rgba(0, 0, 0, 0.3);
 }
 
 .comment-section {
-  position: relative;
   border-top: 1px solid #efefef;
-  padding: 25px 25px 25px 25px;
+  padding: 20px 5px 20px 5px;
   margin-top: 4px;
   overflow: hidden;
 }
@@ -319,7 +336,6 @@ body {
 .interactions {
   margin-left: 10px;
   margin-top: 5px;
-  /* margin-bottom: 10px; */
 }
 
 .interaction-item {
@@ -337,16 +353,16 @@ body {
   font-weight: 600;
 }
 
-.gallery-item-likes {
-  margin-right: 2.2rem;
-}
-
 .gallery-item-type {
   position: absolute;
   top: 1rem;
   right: 1rem;
   font-size: 2.5rem;
   text-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
+}
+
+.explore-img {
+  height: 300px;
 }
 
 @media only screen and (min-width: 280px) and (max-width: 653px) {
@@ -401,6 +417,10 @@ body {
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
+  .posting {
+    width: 150%;
+  }
+
   .sidebar {
     display: none;
   }
@@ -425,6 +445,13 @@ body {
     justify-content: center;
     align-self: center;
     align-items: center;
+  }
+
+  .navigation-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 5px;
   }
 }
 
@@ -538,10 +565,22 @@ body {
   padding: 10px;
   font-size: 10px;
   display: inline;
+  cursor: pointer;
 }
 
 .installed {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.posting {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+@media screen and (min-width: 200px) and (max-width: 812px) {
+  .one {
+    margin-right: 15px;
+  }
 }

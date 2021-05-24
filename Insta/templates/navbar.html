@@ -27,6 +27,7 @@
         <input
           class="text-center form-control me-2"
           type="search"
+          name="search"
           placeholder="Search"
           aria-label="Search"
         />
@@ -56,7 +57,7 @@
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
             <div class="bd">
               <li class="magna">
-                <a class="carta" href="/profile"
+                <a class="carta" href="/profile/{{ user.username }}"
                   ><i class="far fa-user-circle"></i><span> Profile</span></a
                 >
               </li>

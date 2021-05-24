@@ -1,25 +1,55 @@
-{%extends 'base.html'%}
-{% load static %}
-{% block content %}
-<div class="container-fluid" style="background-color: black; height: 750vh;">
+{%extends 'base.html'%} {% load static %} {% block content %}
+<div class="container-fluid">
   <div class="row pt-5">
-    {% if users %}
-      <h2 class="text-center" style="color: white;">{{ users|length }} users found</h2>
+    {% if profiles %}
+    <h2 class="text-center">{{ profiles|length }} users found</h2>
     {% else %}
-      <h2 class="text-center" style="color: white;">No Results Found for "{{message}}"</h2>
+    <h2 class="text-center">No Results Found for "{{message}}"</h2>
     {% endif %}
-
   </div>
 
   <div class="row">
-
-  {% if users %}
-    {% for user in users %}
-      <div class="col-sm-6 col-md-3">
-          <h1>{{user.username}}</h1>
+    {% if profiles %} {% for profile in profiles %}
+    <header>
+      <div class="container">
+        <!-- Displaying user profile   -->
+        <div class="profile">
+          <div class="profile-image">
+            {% if profile.photo.url %}
+            <img class="img-circle profile_img" src="{{ profile.photo.url }}" />
+            {% else %}
+            <img class="profile_img" src="/static/photos/default.jpg" alt="" />
+            {% endif %}
+          </div>
+    
+          <div class="profile-user-settings">
+            <a href="{% url 'profile' profile.user.username %}"><h1 class="username">{{ profile.user.username }}</h1></a>
+          </div>
+    
+          <div class="profile-stats">
+            <ul>
+              <li>
+                <span class="profile-stat-count">{{images|length}}</span> posts
+              </li>
+              <li><span class="profile-stat-count">0</span> followers</li>
+              <li><span class="profile-stat-count">0</span> following</li>
+            </ul>
+          </div>
+    
+          <div class="profile-bio col-md-4">
+            <p>
+              <span class="name">{{ profile.user.profile.name }}</span> <br /><span
+                class="bio-text"
+                >{{ profile.user.profile.bio }}</span
+              >
+            </p>
+          </div>
+        </div>
+        <!-- End of profile section -->
       </div>
-    {% endfor %}
-  {% endif %}
+      <!-- End of container -->
+    </header>
+    {% endfor %} {% endif %}
   </div>
 </div>
 {% endblock %}

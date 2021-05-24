@@ -4,20 +4,15 @@
     <!-- Displaying user profile   -->
     <div class="profile">
       <div class="profile-image">
-        {% if profile.photo %}
-        <img class="img-circle profile_img" src="{{ profile.photo }}"/>
+        {% if profile.photo.url %}
+        <img class="img-circle profile_img" src="{{ profile.photo.url }}" />
         {% else %}
-        <img class="profile_img"
-          src="/static/photos/default.jpg"
-          alt=""
-        />
+        <img class="profile_img" src="/static/photos/default.jpg" alt="" />
         {% endif %}
-        <label>{{profile.user.username}}</label>
       </div>
 
       <div class="profile-user-settings">
-        <h1 class="username">{{ request.user.username }}</h1>
-
+        <h1 class="username">{{ profile.user.username }}</h1>
         <button class="btn profile-edit btn-sm">
           <a class="carta" href="/update_profile">Edit Profile</a>
         </button>
@@ -78,9 +73,9 @@
 
       <div class="profile-bio col-md-4">
         <p>
-          <span class="name">{{ request.user.profile.name }}</span> <br /><span
+          <span class="name">{{ profile.user.profile.name }}</span> <br /><span
             class="bio-text"
-            >{{ request.user.profile.bio }}</span
+            >{{ profile.user.profile.bio }}</span
           >
         </p>
       </div>
@@ -97,8 +92,12 @@
       <div class="timeline gallery">
         {% for image in images %}
         <div class="gallery-item col-md-4" tabindex="0">
-          <img src="{{image.image.url}}" class="gallery-image" alt=""/>
-  
+          <img
+            src="{{image.image.url}}"
+            class="explore-img gallery-image"
+            alt=""
+          />
+
           <div class="gallery-item-info">
             <ul>
               <li class="gallery-item-likes">

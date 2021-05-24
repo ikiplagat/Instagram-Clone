@@ -8,10 +8,10 @@ from django.db.models.fields import TextField
 
 # Profile class.
 class Profile(models.Model):
-    user = models.OneToOneField(User,related_name='profile' ,on_delete=models.CASCADE)
-    photo = CloudinaryField('photo')
-    name =  models.CharField(max_length =30)
-    bio = models.CharField(max_length =150)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    photo = CloudinaryField('photo', blank=True)
+    name =  models.CharField(max_length =30, blank=True)
+    bio = models.CharField(max_length =150, blank=True)
     followers=models.IntegerField(default=0)
     following=models.IntegerField(default=0)
   
@@ -29,8 +29,8 @@ class Profile(models.Model):
         cls.objects.filter(id=id).update(photo=photo,name=name,bio=bio)              
 
     @classmethod
-    def get_profile_by_id(cls,id):
-        profile = cls.objects.get(id=id)
+    def get_profile(cls,username):
+        profile = cls.objects.filter(user__username__icontains=username)
         return profile
     
     @classmethod
@@ -39,9 +39,10 @@ class Profile(models.Model):
         return profiles
     
     @classmethod
-    def search_profile(cls,username):
-        user = User.objects.filter(title__icontains=username)
-        return user
+    def get_user(cls,username):
+        profile = cls.objects.filter(user__username__icontains=username)
+        return profile
+  
     
 
 # Image class.
@@ -49,7 +50,7 @@ class Image(models.Model):
     image = CloudinaryField('photo')
     name = models.CharField(max_length =30, blank=True)
     caption = TextField()
-    likes = models.IntegerField(blank=True, default=0)
+    likes=models.ManyToManyField(Profile,related_name="posts")
     comments = models.CharField(max_length =2200, blank=True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(User, related_name="posted_by", on_delete=models.CASCADE, null=True)
@@ -67,19 +68,38 @@ class Image(models.Model):
     def delete_image(self):
         self.delete()  
         
+    def likes_num(self):
+        self.likes.count()    
+        
     @classmethod
     def get_all(cls):
         images = cls.objects.all()
-        return images            
+        return images 
+    
+    @classmethod
+    def get_image_by_user(cls,username):
+        images = cls.objects.filter(user__username__contains=username)
+        return images     
+    
+    
+class Follow(models.Model):
+  posted = models.DateTimeField(auto_now_add=True)
+  followed = models.ForeignKey(Profile,on_delete=models.CASCADE,related_name="profile_followed")
+  follower = models.ForeignKey(Profile,on_delete=models.CASCADE,related_name="profile_follower")
+
+  def __str__(self):
+    return self.pk
+         
 
 
 class Comment(models.Model):
-    content = models.TextField(max_length=150)
+    comment = models.TextField(max_length=2200)
     user = models.ForeignKey(User, related_name='commented_by', on_delete=models.CASCADE)
     image = models.ForeignKey(Image, related_name='comment_for', on_delete=models.CASCADE)
+    pub_date=models.DateField(auto_now_add=True)
 
     def __str__(self):  
-        return self.content
+        return self.comment
     
     def save_comment(self):
         self.save()
@@ -88,6 +108,9 @@ class Comment(models.Model):
         self.delete()      
 
     @classmethod
-    def get_comments(cls):
-        comments = cls.objects.all()
-        return comments
+    def get_comments(cls,image):
+        return cls.objects.filter(image=image)
+
+    
+    class Meta:
+        ordering=['-pub_date']

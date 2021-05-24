@@ -64,6 +64,7 @@ To run the tests for the class files:
 - Python3
 - Django
 - Bootstrap-v5
+- Cloudinary
 
 ## Known Bugs
 

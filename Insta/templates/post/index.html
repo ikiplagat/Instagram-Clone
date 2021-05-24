@@ -1,84 +1,155 @@
-{%extends 'base.html'%}
+{%extends 'base.html'%} 
 {% load bootstrap5 %} 
-{% load static %}
+{% load static %} 
 {% block content %}
-  <div>
-    <main>
-      <div class="container mt-5">
-        <div class="row" style="position: relative;">
-          <!-- Empty div -->
-          <div class="empty col-md-1"></div>
-          <div class="margs timeline gallery col-md-7">
-            {% for image in images %}
-            <div class='profile_user'>
-              <a href="" target='_blank' class='user'>{{image.user}}</a>
+<div>
+  <main>
+    <div class="container mt-5">
+      <div class="row" style="position: relative">
+        <!-- Empty div -->
+        <div class="empty col-md-1"></div>
+        <div class="margs timeline gallery col-md-7">
+          {% for image in images %}
+          <div class="size card mb-5">
+            <div class="profile_user mb-3">
+              <a
+                href="/profile/{{image.user.username}}"
+                style="text-decoration: none"
+              >
+              {% if image.profile.photo %}
+                <img
+                  class="rounded-circle"
+                  style="width: 3em; height: 3em"
+                  src="{{image.profile.photo.url}}"
+                  alt="{{image.user}}"
+                />
+              {% else %}
+                <img class="profile_img"
+                src="/static/photos/default.jpg"
+                alt=""
+                />
+              {% endif %}
+                <span class="prof"><strong>{{image.user}}</strong></span>
+              </a>
             </div>
-            <div class="card mb-5" tabindex="0">
-              <a href="/post/{{image.id}}"><img src="{{image.image.url}}" class="gallery-image" alt="" /></a>
-              
+            <div class="" tabindex="0">
+              <a href="/post/{{image.id}}"
+                ><img src="{{image.image.url}}" class="gallery-image" alt=""
+              /></a>
+
               <div class="post-details">
                 <div class="row interactions">
-                  <div class="col-md-1">
-                    <a class="interaction-item">
-                    <i class="fas fa-heart" aria-hidden="true"></i><br>
-                    </a>
+                  <div class="col-1 one">
+                    <form action="{% url 'likePost' image_id=image.id %}">
+                      {% csrf_token %}
+                      <button
+                        type="submit"
+                        name="image_id"
+                        value="{{image.id}}"
+                        style="
+                          border: 0px;
+                          background-color: transparent;
+                          margin-bottom: 1rem;
+                        "
+                      >
+                        <i class="far fa-heart"></i>
+                      </button>
+                    </form>
                   </div>
-                  <div class="col-md-1">
-                    <a class="interaction-item">
-                    <i class="fas fa-comment" aria-hidden="true"></i>
-                    </a>
+                  <div class="col-1">
+                    <form action="">
+                      {% csrf_token %}
+                      <button
+                        type="submit"
+                        name="image_id"
+                        value="{{image.id}}"
+                        style="
+                          border: 0px;
+                          background-color: transparent;
+                          margin-bottom: 1rem;
+                        "
+                      >
+                        <i class="far fa-comment"></i>
+                      </button>
+                    </form>
                   </div>
                 </div>
-                <p class="likes">360 likes</p>
-                <div class='caption'>
-                  <a href="">{{image.user}}</a><span>{{image.caption}}</span>
+                <p class="likes">{{image.likes.count}} likes</p>
+                <div class="caption">
+                  <p>{{image.caption}}</p>
                 </div>
-                <div class='comment'>
-                  {%for comment in comments%}
-                    {%if comment.post == post.id%}
-                      <p>
-                        <strong>{{comment.user.username}}</strong> {{comment.comment}}
-                      </p>
-                    {%endif%}
-                  {%endfor%}
+                <div class="comment">
+                  {% for comment in comments %} 
+                    {% if comment.image.id == image.id %}
+                      <div>
+                        <a
+                          href=""
+                          class=""
+                          style="
+                            font-size: 0.8rem;
+                            color: black;
+                            padding-left: 20px;
+                            text-decoration: none;
+                          "
+                          ><strong>{{comment.user}}</strong></a
+                        >
+                        <span class="" style="font-size: 0.8rem"
+                          >{{comment.comment}}</span
+                        >
+                      </div>
+                    {% endif %} 
+                  {% endfor %}
                 </div>
-                <div class='comment-section'>
-                  <input type='text' id='commentss' placeholder='Add a comment...'>
+                <div class="comment-section">
+                  <form
+                    role="add_comment"
+                    action="{% url 'addComment' image_id=image.id %}"
+                  >
+                    {% csrf_token%}
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Add a comment..."
+                        name="comments"
+                        style="font-size: 1rem; border: 0"
+                      />
+                      <div class="input-group-btn">
+                        <button
+                          class="btn"
+                          type="submit"
+                          style="font-size: 1rem; color: rgb(178, 223, 252)"
+                        >
+                          Post
+                        </button>
+                      </div>
+                    </div>
+                  </form>
                 </div>
                 <strong>
-                  <p style="margin-left: 10px; font-size: 10px;">{{image.post_date|timesince|upper}} AGO</p>
+                  <p style="margin-left: 10px; font-size: 10px">
+                    {{image.post_date|timesince|upper}} AGO
+                  </p>
                 </strong>
               </div>
             </div>
-            {% endfor %}
           </div>
-          <div class="sidebar col-md-3">
-            {% if current_user %}
-            {% if profile.photo %}
-            <h1>hello</h1>
-            <img class="img-circle profile_img" src="{{ profile.photo }}"/>
-            {% else %}
-            <img class="profile_img"
-              src="/static/photos/default.jpg"
-              alt=""
-            />
-            {% endif %}
-            <label>{{profile.user.username}}</label>
-            {% endif %}
-            <h5 class="ma text-muted">Suggestions For You</h5>
-          </div>
-          <div class="empty col-md-1"></div>
+          {% endfor %}
         </div>
+        <div class="sidebar col-md-3">
+          {% if current_user %} {% if profile.photo %}
+          <h1>hello</h1>
+          <img class="img-circle profile_img" src="{{ profile.photo.url }}" />
+          {% else %}
+          <img class="profile_img" src="/static/photos/default.jpg" alt="" />
+          {% endif %}
+          <label>{{profile.user.username}}</label>
+          {% endif %}
+          <h5 class="ma text-muted">Suggestions For You</h5>
+        </div>
+        <div class="empty col-md-1"></div>
       </div>
-    </main>
-    
-    <!-- <a
-      id="back-to-top"
-      href="#"
-      class="btn btn-light btn-lg back-to-top"
-      role="button"
-      ><i class="fa fa-chevron-up"></i
-    ></a> -->
-  </div>
-{%endblock%}
-
+    </div>
+  </main>
+</div>
+{% endblock %}
