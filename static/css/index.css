@@ -275,7 +275,6 @@ body {
 .gallery-image {
   width: 100%;
   cursor: pointer;
-  object-fit: contain;
 }
 
 .size {
@@ -295,11 +294,10 @@ body {
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 1rem;
-  left: 1rem;
-  bottom: 1rem;
-  width: calc(100% - 2rem);
-  height: calc(100% - 4rem);
+  top: 0;
+  left: 0;
+  width: calc(100%);
+  height: calc(100%);
   background-color: rgba(0, 0, 0, 0.3);
 }
 
@@ -362,10 +360,21 @@ body {
 }
 
 .explore-img {
-  height: 300px;
+  margin: auto;
+  width: 400px;
+  top: 0;
+  left: -50%;
+  right: -50%;
 }
 
 @media only screen and (min-width: 280px) and (max-width: 319px) {
+  .explore-img {
+    margin: auto;
+    width: 400px;
+  }
+}
+
+@media only screen and (min-width: 540px) and (max-width: 720px) {
   .navigation-link i {
     margin-left: 20px;
   }
@@ -402,7 +411,6 @@ body {
   }
 }
 
-
 @media only screen and (min-width: 1025px) and (max-width: 1366px) {
   .navigation-icons {
     display: flex;
@@ -421,10 +429,6 @@ body {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-  }
-
-  .mleft {
-    margin-left: 48px;
   }
 
   .margs {
@@ -447,7 +451,7 @@ body {
 
   .timeline {
     display: flex;
-    margin-left: 30px;
+    margin-left: auto;
     margin-right: auto;
     width: 100%;
   }
@@ -468,6 +472,10 @@ body {
     justify-content: center;
     margin-top: 20px;
     margin-bottom: 5px;
+  }
+
+  .margs {
+    margin-left: 23px;
   }
 }
 
@@ -571,13 +579,12 @@ body {
   justify-content: center;
 } */
 
-.new_post {
-  height: 60%;
-  margin-left: 10px;
-  padding-right: 10px;
+.high {
+  padding-left: 50px;
+  margin-left: 50px;
 }
 
-#footer li{
+#footer li {
   padding: 10px;
   font-size: 10px;
   display: inline;

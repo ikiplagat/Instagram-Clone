@@ -1,20 +1,21 @@
 {%extends 'base.html'%} {% load static %} {% block content %}
 <header>
+  {% for profile in profile %}
   <div class="container">
     <!-- Displaying user profile   -->
     <div class="profile">
       <div class="profile-image">
-        {% if user.profile.photo %}
-        <img class="img-circle profile_img" src="{{ user.profile.photo.url }}" />
+        {% if profile.photo %}
+        <img class="img-circle profile_img" src="{{ profile.photo.url }}" />
         {% else %}
         <img class="profile_img" src="/static/photos/default.jpg" alt="" />
         {% endif %}
       </div>
 
       <div class="profile-user-settings">
-        <h1 class="username">{{ user.profile.user.username }}</h1>
+        <h1 class="username">{{ profile.user.username }}</h1>
         <button class="btn profile-edit btn-sm">
-          <a class="carta" href="/update_profile">Edit Profile</a>
+          <a class="carta" href="/create_profile">Edit Profile</a>
         </button>
 
         <button
@@ -82,16 +83,16 @@
     </div>
     <!-- End of profile section -->
   </div>
+  {% endfor %}
   <!-- End of container -->
 </header>
 
 <main>
   <div class="container">
-    <p class="text-muted"><strong>POSTS</strong></p>
-    <div class="btp row pt-5">
-      <div class="timeline gallery">
-        {% for image in images %}
-        <div class="gallery-item col-md-4" tabindex="0">
+    <div class="row pt-5 timeline mleft btp">
+      {% for image in images %}
+      <div class="gallery-item col-md-4" tabindex="0">
+        <div class="ratio ratio-1x1" style="overflow: hidden">
           <img
             src="{{image.image.url}}"
             class="explore-img gallery-image"
@@ -102,17 +103,19 @@
             <ul>
               <li class="gallery-item-likes">
                 <span class="visually-hidden">Likes:</span
-                ><i class="fas fa-heart" aria-hidden="true"></i> {{ image.likes.count }}
+                ><i class="fas fa-heart" aria-hidden="true"></i> {{
+                image.likes.count }}
               </li>
               <li class="gallery-item-comments">
                 <span class="visually-hidden">Comments:</span
-                ><i class="fas fa-comment" aria-hidden="true"></i> {{ image.comments|length }}
+                ><i class="fas fa-comment" aria-hidden="true"></i> {{
+                image.count }}
               </li>
             </ul>
           </div>
         </div>
-        {% endfor %}
       </div>
+      {% endfor %}
     </div>
   </div>
 </main>

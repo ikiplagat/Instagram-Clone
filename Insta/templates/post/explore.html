@@ -1,27 +1,33 @@
 {%extends 'base.html'%} {% load static %} {% block content %}
 <main>
   <div class="container">
-    <div class="row pt-5">
-      <div class="timeline gallery mleft">
-        {% for image in images %}
-        <div class="gallery-item col-md-4" tabindex="0">
-          <img src="{{image.image.url}}" class="explore-img gallery-image" alt=""/>
-  
+    <div class="row pt-5 timeline mleft">
+      {% for image in images %}
+      <div class="gallery-item col-md-4" tabindex="0">
+        <div class="ratio ratio-1x1" style="overflow: hidden">
+          <img
+            src="{{image.image.url}}"
+            class="explore-img gallery-image"
+            alt=""
+          />
+
           <div class="gallery-item-info">
             <ul>
               <li class="gallery-item-likes">
                 <span class="visually-hidden">Likes:</span
-                ><i class="fas fa-heart" aria-hidden="true"></i> {{ image.likes.count }}
+                ><i class="fas fa-heart" aria-hidden="true"></i> {{
+                image.likes.count }}
               </li>
               <li class="gallery-item-comments">
                 <span class="visually-hidden">Comments:</span
-                ><i class="fas fa-comment" aria-hidden="true"></i> {{ image.count }}
+                ><i class="fas fa-comment" aria-hidden="true"></i> {{
+                image.count }}
               </li>
             </ul>
           </div>
         </div>
-        {% endfor %}
       </div>
+      {% endfor %}
     </div>
   </div>
 </main>

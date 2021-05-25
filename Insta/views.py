@@ -102,6 +102,7 @@ def new_post(request):
     return render(request, 'post/new_post.html', {"form": form})
 
 # Update profile
+@login_required(login_url='/accounts/login/')
 def update_profile(request):
     '''
     Method to update a user profile
