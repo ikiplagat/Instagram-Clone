@@ -365,6 +365,17 @@ body {
   height: 300px;
 }
 
+@media only screen and (min-width: 280px) and (max-width: 319px) {
+  .navigation-link i {
+    margin-left: 20px;
+  }
+
+  .navigation-icons {
+    display: flex;
+    padding-left: 10px;
+  }
+}
+
 @media only screen and (min-width: 280px) and (max-width: 653px) {
   .navigation-icons {
     display: flex;
@@ -374,6 +385,7 @@ body {
     margin-left: auto;
     margin-right: auto;
   }
+
   .search {
     display: flex;
     justify-content: center;
@@ -409,6 +421,10 @@ body {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
+  }
+
+  .mleft {
+    margin-left: 48px;
   }
 
   .margs {

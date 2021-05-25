@@ -137,15 +137,32 @@
           {% endfor %}
         </div>
         <div class="sidebar col-md-3">
-          {% if current_user %} {% if profile.photo %}
-          <h1>hello</h1>
-          <img class="img-circle profile_img" src="{{ profile.photo.url }}" />
-          {% else %}
-          <img class="profile_img" src="/static/photos/default.jpg" alt="" />
-          {% endif %}
-          <label>{{profile.user.username}}</label>
-          {% endif %}
-          <h5 class="ma text-muted">Suggestions For You</h5>
+          <div class="card-body d-none d-md-block">
+            <div class="mb-1">
+              <a
+                href="/profile/{{user.username}}"
+                style="text-decoration: none"
+              >
+              {% if user.profile.photo %}
+                <img
+                  class="rounded-circle"
+                  style="width: 3em; height: 3em"
+                  src="{{user.profile.photo.url}}"
+                  alt="{{image.user}}"
+                />
+              {% else %}
+                <img
+                  class="rounded-circle"
+                  style="width: 3em; height: 3em"
+                  src="/static/photos/default.jpg"
+                  alt=""
+                />
+              {% endif %}
+                <span class="prof"><strong>{{user.username}}</strong></span>
+              </a>
+            </div>
+          </div>
+          <p style="font-weight: 600; color: gray;" class="text-muted">Suggestions For You</p>
         </div>
         <div class="empty col-md-1"></div>
       </div>

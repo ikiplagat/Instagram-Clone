@@ -3,11 +3,11 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.http  import Http404, HttpResponseRedirect
 from .email import send_welcome_email
 from django.contrib.auth.decorators import login_required
-from .models import Profile, Image, Comment
+from .models import Profile, Image, Comment, Follow
 import datetime as dt
 from django.urls import reverse
 from django.contrib.auth.models import User
-from .forms import NewPostForm, UpdateProfileForm
+from .forms import NewPostForm, UpdateProfileForm, FollowForm, UnfollowForm
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
@@ -20,6 +20,17 @@ def index(request):
     
     return render(request, 'post/index.html', { "images": images, "comments": comments})
 
+
+@login_required
+def welcome_mail(request):
+    user = request.user
+    email = user.email
+    name = user.name
+    send_welcome_email(name,email)
+    
+    return redirect(profile)
+    
+  
 # Explore
 @login_required(login_url='/accounts/login/')
 def explore(request):
@@ -27,8 +38,10 @@ def explore(request):
     Explore various user posts
     '''
     images = Image.objects.all()
+    comments = Comment.objects.all()
+    count = len(comments)
     
-    return render(request, 'post/explore.html', { "images": images})
+    return render(request, 'post/explore.html', { "images": images, "count": count})
 
 # Profile page
 @login_required(login_url='/accounts/login/')
@@ -39,10 +52,6 @@ def profile(request, username):
     date = dt.date.today()
     images = Image.get_image_by_user(username)
     profile = Profile.get_user(username)
-    # try:
-    #     profile = Profile.get_user(username)
-    # except ObjectDoesNotExist:
-    #     raise Http404()
     
     return render(request, 'profile/profile.html', {"date": date, "images": images, "profile": profile })
 
@@ -93,7 +102,6 @@ def new_post(request):
     return render(request, 'post/new_post.html', {"form": form})
 
 # Update profile
-@login_required(login_url='/accounts/login/')
 def update_profile(request):
     '''
     Method to update a user profile
@@ -105,11 +113,21 @@ def update_profile(request):
             profile = form.save(commit=False)
             profile.user = current_user
             profile.save()
-        return redirect('profile', username=current_user.username)
+        return redirect('/accounts/login', username=current_user.username)
 
     else:
         form = UpdateProfileForm()
     return render(request, 'profile/profile_edit.html', {"form": form})
+
+@login_required
+def follow(request,is_follow):
+    if request.method == "GET":
+        user_profile = Profile.objects.get(primary_key = is_follow)
+        follow_user = Follow.objects.filter(follower = request.user.profile, followed = user_profile)
+        follow_user.save()
+        
+        return redirect('profile', username=user_profile.user.username)
+        
 
 @login_required(login_url='/accounts/login/')
 def comment(request,image_id):

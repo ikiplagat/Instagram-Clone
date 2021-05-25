@@ -34,7 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'Insta.apps.InstaConfig',
+    "Insta.apps.InstaConfig",
     'bootstrap5',
     'cloudinary',
     'django.contrib.admin',

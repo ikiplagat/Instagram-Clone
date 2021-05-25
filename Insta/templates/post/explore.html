@@ -2,7 +2,7 @@
 <main>
   <div class="container">
     <div class="row pt-5">
-      <div class="timeline gallery">
+      <div class="timeline gallery mleft">
         {% for image in images %}
         <div class="gallery-item col-md-4" tabindex="0">
           <img src="{{image.image.url}}" class="explore-img gallery-image" alt=""/>
@@ -11,11 +11,11 @@
             <ul>
               <li class="gallery-item-likes">
                 <span class="visually-hidden">Likes:</span
-                ><i class="fas fa-heart" aria-hidden="true"></i> 56
+                ><i class="fas fa-heart" aria-hidden="true"></i> {{ image.likes.count }}
               </li>
               <li class="gallery-item-comments">
                 <span class="visually-hidden">Comments:</span
-                ><i class="fas fa-comment" aria-hidden="true"></i> 2
+                ><i class="fas fa-comment" aria-hidden="true"></i> {{ image.count }}
               </li>
             </ul>
           </div>

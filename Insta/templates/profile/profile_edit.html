@@ -1,34 +1,36 @@
 {% load bootstrap5 %} {% load static %}
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create User Profile</title>
+    {{form.media}} {% block styles %} {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/news.css' %}" />
+    {% endblock %}
+  </head>
 
-  <title>Profile Update</title>
-  {{form.media}}
+  <body>
+    <div class="container col-md-4 pt-5 pb-5">
+      <form
+        class="card pt-3 pb-3 new_post"
+        action="{%url 'update_profile'%}"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        {%csrf_token%} {% bootstrap_form form%}
+        <input
+          style="background-color: rgb(178, 223, 252)"
+          type="submit"
+          class="btn btn-sm"
+          value="Post"
+        />
+      </form>
+    </div>
 
-{% block styles %} {% bootstrap_css %}
-  <link rel="stylesheet" href="{% static 'css/news.css' %}"> {% endblock %}
-
-</head>
-
-<body>
-
-  <div class="container col-md-4 pt-5 pb-5">
-    <form class="card pt-3 pb-3 new_post" action="{%url 'update_profile'%}" method="post" enctype="multipart/form-data">
-      {%csrf_token%}
-  
-      {% bootstrap_form form%}
-      <input type="submit" class="btn btn-primary btn-sm" value="Post">
-    </form>
-  </div>
-
-   {% block scripts %}
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  {% bootstrap_javascript %} {% endblock %}
-
-</body>
-
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %} {% endblock %}
+  </body>
 </html>

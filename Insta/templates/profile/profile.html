@@ -4,15 +4,15 @@
     <!-- Displaying user profile   -->
     <div class="profile">
       <div class="profile-image">
-        {% if profile.photo.url %}
-        <img class="img-circle profile_img" src="{{ profile.photo.url }}" />
+        {% if user.profile.photo %}
+        <img class="img-circle profile_img" src="{{ user.profile.photo.url }}" />
         {% else %}
         <img class="profile_img" src="/static/photos/default.jpg" alt="" />
         {% endif %}
       </div>
 
       <div class="profile-user-settings">
-        <h1 class="username">{{ profile.user.username }}</h1>
+        <h1 class="username">{{ user.profile.user.username }}</h1>
         <button class="btn profile-edit btn-sm">
           <a class="carta" href="/update_profile">Edit Profile</a>
         </button>
@@ -21,16 +21,16 @@
           class="btn profile-settings-btn"
           aria-label="profile settings"
           data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
+          data-bs-target="#instaModal"
         >
           <i class="fas fa-cog" aria-hidden="true"></i>
         </button>
         <!-- Modal -->
         <div
           class="modal fade"
-          id="exampleModal"
+          id="instaModal"
           tabindex="-1"
-          aria-labelledby="exampleModalLabel"
+          aria-labelledby="instaModalLabel"
           aria-hidden="true"
         >
           <div class="modal-dialog modal-dialog-centered">
@@ -102,11 +102,11 @@
             <ul>
               <li class="gallery-item-likes">
                 <span class="visually-hidden">Likes:</span
-                ><i class="fas fa-heart" aria-hidden="true"></i> 56
+                ><i class="fas fa-heart" aria-hidden="true"></i> {{ image.likes.count }}
               </li>
               <li class="gallery-item-comments">
                 <span class="visually-hidden">Comments:</span
-                ><i class="fas fa-comment" aria-hidden="true"></i> 2
+                ><i class="fas fa-comment" aria-hidden="true"></i> {{ image.comments|length }}
               </li>
             </ul>
           </div>

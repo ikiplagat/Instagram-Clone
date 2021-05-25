@@ -2,13 +2,13 @@
 <div class="container-fluid">
   <div class="row pt-5">
     {% if profiles %}
-    <h2 class="text-center">{{ profiles|length }} users found</h2>
+    <h2 class="text-center">{{ profiles|length }} user found</h2>
     {% else %}
     <h2 class="text-center">No Results Found for "{{message}}"</h2>
     {% endif %}
   </div>
 
-  <div class="row">
+  <div class="row" style="height: 420px;">
     {% if profiles %} {% for profile in profiles %}
     <header>
       <div class="container">
@@ -23,7 +23,7 @@
           </div>
     
           <div class="profile-user-settings">
-            <a href="{% url 'profile' profile.user.username %}"><h1 class="username">{{ profile.user.username }}</h1></a>
+            <a style="text-decoration: none; color: black;" href="{% url 'profile' profile.user.username %}"><h1 class="username">{{ profile.user.username }}</h1></a>
           </div>
     
           <div class="profile-stats">

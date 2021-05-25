@@ -12,5 +12,6 @@ urlpatterns=[
     re_path('comment/(?P<image_id>\d+)',views.comment,name='addComment'),
     path('tinymce/', include('tinymce.urls')),
     path('new/post', views.new_post, name='new_post'),
-    path('update_profile/', views.update_profile, name='update_profile'),
+    path('create_profile/', views.update_profile, name='update_profile'),
+    path('welcome/', views.welcome_mail, name='welcome_email'),
 ]
