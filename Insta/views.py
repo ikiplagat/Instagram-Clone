@@ -21,6 +21,14 @@ def index(request):
     return render(request, 'post/index.html', { "images": images, "comments": comments})
 
 
+@login_required(login_url='/accounts/login/')
+def activity(request):
+    '''
+    Activity
+    '''
+    return render(request, 'post/activity.html')
+
+
 @login_required
 def welcome_mail(request):
     user = request.user
@@ -114,6 +122,9 @@ def update_profile(request):
             profile = form.save(commit=False)
             profile.user = current_user
             profile.save()
+            
+            send_welcome_email(profile.user.username, profile.user.email)
+            
         return redirect('/accounts/login', username=current_user.username)
 
     else:

@@ -3,6 +3,25 @@ body {
   background: #fafafa;
 }
 
+.display {
+  background: url(/static/photos/bg.svg);
+  background-repeat: no-repeat;
+  background-position: top center;
+  width: 100%;
+  height: 310px;
+}
+
+.moji {
+  right: 0;
+  padding-top: 50px;
+}
+
+.message {
+  padding-left: 75px;
+  margin-top: -85px;
+  margin-bottom: 70px;
+}
+
 .navigation {
   background-color: #ffffff;
   position: sticky;

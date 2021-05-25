@@ -15,13 +15,11 @@
             <ul>
               <li class="gallery-item-likes">
                 <span class="visually-hidden">Likes:</span
-                ><i class="fas fa-heart" aria-hidden="true"></i> {{
-                image.likes.count }}
+                ><i class="fas fa-heart" aria-hidden="true"></i> {{image.likes.count}}
               </li>
               <li class="gallery-item-comments">
                 <span class="visually-hidden">Comments:</span
-                ><i class="fas fa-comment" aria-hidden="true"></i> {{
-                image.count }}
+                ><i class="fas fa-comment" aria-hidden="true"></i> {{ image.comments|length }}
               </li>
             </ul>
           </div>
