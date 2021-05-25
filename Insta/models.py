@@ -50,7 +50,7 @@ class Image(models.Model):
     image = CloudinaryField('photo')
     name = models.CharField(max_length =30, blank=True)
     caption = TextField()
-    likes=models.ManyToManyField(Profile,related_name="posts")
+    likes=models.ManyToManyField(Profile,related_name="posts", default=0)
     comments = models.CharField(max_length =2200, blank=True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(User, related_name="posted_by", on_delete=models.CASCADE, null=True)

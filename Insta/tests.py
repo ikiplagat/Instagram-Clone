@@ -43,7 +43,7 @@ class ImageTestClass(TestCase):
         self.user.save()
         self.profile= Profile(user = self.user, photo = 'img', name = 'img', bio = 'I am Levlest', followers = 0, following = 0)
         self.profile.save()
-        self.image = Image(image = 'img', name = 'Kasparov', caption = 'I am Levlest', likes = 0, comments = 'Wowz', profile = self.profile, user = self.user, post_date = '')
+        self.image = Image(image = 'img', name = 'Kasparov', caption = 'I am Levlest', comments = 'Wowz', profile = self.profile, user = self.user, post_date = '')
       
     # Testing instance
     def test_instance(self):
@@ -75,9 +75,9 @@ class CommentTestClass(TestCase):
         self.user.save()
         self.profile= Profile(user = self.user, photo = 'img', name = 'img', bio = 'I am Levlest', followers = 0, following = 0)
         self.profile.save()
-        self.image = Image(image = 'img', name = 'Kasparov', caption = 'I am Levlest', likes = 0, comments = 'Wowz', profile = self.profile, user = self.user, post_date = '')
+        self.image = Image(image = 'img', name = 'Kasparov', caption = 'I am Levlest', comments = 'Wowz', profile = self.profile, user = self.user, post_date = '')
         self.image.save()
-        self.comment = Comment(content = 'This is lovely', user = self.user, image = self.image)
+        self.comment = Comment(comment = 'This is lovely', user = self.user, image = self.image)
         
     # Testing instance
     def test_instance(self):
